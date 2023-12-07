@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://vty4kcnla27b"]
+
+[ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
+
+[node name="Main" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.164706, 0.247059, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0313726, 0.0784314, 0.117647, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1128, 39, 28, 39)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(1152, 649)
+rotation = 3.14159
+color = Color(0.0313726, 0.0784314, 0.117647, 1)
+polygon = PackedVector2Array(0, 1, 1152, 0.999878, 1128, 39, 28, 39)
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+color = Color(0.109804, 0.262745, 0.380392, 1)
+polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
+
+[node name="Player" parent="." instance=ExtResource("1_ym5oo")]
+position = Vector2(41, 257)
