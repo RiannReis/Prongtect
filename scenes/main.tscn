@@ -1,30 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://vty4kcnla27b"]
+[gd_scene load_steps=4 format=3 uid="uid://vty4kcnla27b"]
 
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
+[ext_resource type="PackedScene" uid="uid://cmqv3b7hvek0w" path="res://scenes/rect_enemy.tscn" id="2_if3wd"]
+[ext_resource type="PackedScene" uid="uid://c2uvirxow2qmr" path="res://scenes/pong_ball.tscn" id="3_2hpth"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Floor" type="Polygon2D" parent="."]
+scale = Vector2(0.986395, 1)
 color = Color(0.0588235, 0.164706, 0.247059, 1)
+polygon = PackedVector2Array(0, 0, 0, 640, 1167.89, 648, 1168, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="TopBar" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TopBar"]
+polygon = PackedVector2Array(0, 0, 48, 40, 1104, 40, 1152, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="TopBar"]
 color = Color(0.0313726, 0.0784314, 0.117647, 1)
-polygon = PackedVector2Array(0, 0, 1152, 0, 1128, 39, 28, 39)
+polygon = PackedVector2Array(0, 0, 48, 40, 1104, 40, 1152, 0)
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
+[node name="BottomBar" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomBar"]
+position = Vector2(583.5, 630.5)
+polygon = PackedVector2Array(-583.5, 17.5, -559.5, -22.5, 536.5, -22.5, 568.5, 17.5)
+
+[node name="Polygon2D" type="Polygon2D" parent="BottomBar"]
 position = Vector2(1152, 649)
-rotation = 3.14159
+rotation = -3.14159
 color = Color(0.0313726, 0.0784314, 0.117647, 1)
-polygon = PackedVector2Array(0, 1, 1152, 0.999878, 1128, 39, 28, 39)
+polygon = PackedVector2Array(0, 1, 1152, 0.999878, 1128, 40.9999, 32, 41)
 
 [node name="Polygon2D3" type="Polygon2D" parent="."]
 color = Color(0.109804, 0.262745, 0.380392, 1)
 polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
 
+[node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
+position = Vector2(448, 272)
+
 [node name="Player" parent="." instance=ExtResource("1_ym5oo")]
-position = Vector2(41, 257)
+position = Vector2(64, 240)
+
+[node name="PongBall" parent="." instance=ExtResource("3_2hpth")]
+position = Vector2(224, 272)
