@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://c2uvirxow2qmr"]
+[gd_scene load_steps=2 format=3 uid="uid://c2uvirxow2qmr"]
 
-[node name="PongBall" type="RigidBody2D"]
+[ext_resource type="Script" path="res://scripts/pong_ball.gd" id="1_h8mni"]
+
+[node name="PongBall" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 19
+script = ExtResource("1_h8mni")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 0, 13, 0, 13, 13, 0, 13)

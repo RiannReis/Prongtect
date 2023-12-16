@@ -41,10 +41,10 @@ color = Color(0.109804, 0.262745, 0.380392, 1)
 polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
 
 [node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
-position = Vector2(448, 272)
+position = Vector2(1072, 256)
 
 [node name="Player" parent="." instance=ExtResource("1_ym5oo")]
-position = Vector2(64, 240)
+position = Vector2(64, 256)
 
 [node name="PongBall" parent="." instance=ExtResource("3_2hpth")]
-position = Vector2(224, 272)
+position = Vector2(544, 288)
