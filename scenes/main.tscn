@@ -13,7 +13,7 @@ polygon = PackedVector2Array(0, 0, 0, 640, 1167.89, 648, 1168, 0)
 
 [node name="TopBar" type="StaticBody2D" parent="."]
 collision_layer = 16
-collision_mask = 15
+collision_mask = 47
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TopBar"]
 polygon = PackedVector2Array(0, 0, 48, 40, 1104, 40, 1152, 0)
@@ -24,7 +24,7 @@ polygon = PackedVector2Array(0, 0, 48, 40, 1104, 40, 1152, 0)
 
 [node name="BottomBar" type="StaticBody2D" parent="."]
 collision_layer = 16
-collision_mask = 15
+collision_mask = 47
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomBar"]
 position = Vector2(583.5, 630.5)

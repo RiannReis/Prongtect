@@ -11,7 +11,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	var collision_info = move_and_collide(velocity * delta)
+	var collision_info = move_and_collide(velocity * speed * delta)
 	
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
@@ -19,6 +19,6 @@ func _physics_process(delta):
 
 func start_ball():
 	randomize()
-	velocity.x = [-speed, speed][randi() % 2]
-	velocity.y = [-speed, speed][randi() % 2]
+	velocity.x = [-1, 1][randi() % 2]
+	velocity.y = [-0.8, 0.8][randi() % 2]
 

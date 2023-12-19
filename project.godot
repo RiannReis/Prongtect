@@ -58,6 +58,7 @@ space_bar={
 2d_physics/layer_3="objects"
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="walls"
+2d_physics/layer_6="rect_enemy"
 2d_physics/stretch/aspect="keep"
 2d_physics/size/borderless=false
 2d_physics/stretch/mode="canvas_items"

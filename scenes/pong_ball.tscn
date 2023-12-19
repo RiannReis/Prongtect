@@ -4,7 +4,7 @@
 
 [node name="PongBall" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 19
+collision_mask = 49
 script = ExtResource("1_h8mni")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
