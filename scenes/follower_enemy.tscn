@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cswobtkjbc4nx"]
+
+[ext_resource type="Script" path="res://scripts/follower_enemy.gd" id="1_8wjq4"]
+
+[node name="FollowerEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_8wjq4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 0, 16, 0, 24, 8, 16, 16, -8, 16, -16, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+color = Color(0.505882, 0.384314, 0.443137, 1)
+polygon = PackedVector2Array(-8, 0, 16, 0, 24, 8, 16, 16, -8, 16, -16, 8)

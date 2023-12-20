@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://vty4kcnla27b"]
+[gd_scene load_steps=6 format=3 uid="uid://vty4kcnla27b"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_800ja"]
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
 [ext_resource type="PackedScene" uid="uid://cmqv3b7hvek0w" path="res://scenes/rect_enemy.tscn" id="2_if3wd"]
 [ext_resource type="PackedScene" uid="uid://c2uvirxow2qmr" path="res://scenes/pong_ball.tscn" id="3_2hpth"]
+[ext_resource type="PackedScene" uid="uid://cswobtkjbc4nx" path="res://scenes/follower_enemy.tscn" id="4_626lb"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_800ja")
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="Floor" type="Polygon2D" parent="."]
 scale = Vector2(0.986395, 1)
@@ -40,6 +49,26 @@ polygon = PackedVector2Array(0, 1, 1152, 0.999878, 1128, 40.9999, 32, 41)
 color = Color(0.109804, 0.262745, 0.380392, 1)
 polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.0980392)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -89.0
+offset_right = 109.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
 position = Vector2(1072, 256)
 
@@ -48,3 +77,9 @@ position = Vector2(64, 256)
 
 [node name="PongBall" parent="." instance=ExtResource("3_2hpth")]
 position = Vector2(544, 288)
+
+[node name="FollowerEnemy" parent="." instance=ExtResource("4_626lb")]
+position = Vector2(368, 336)
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
