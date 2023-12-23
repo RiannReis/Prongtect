@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://vty4kcnla27b"]
+[gd_scene load_steps=8 format=3 uid="uid://vty4kcnla27b"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_800ja"]
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
@@ -6,8 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://c2uvirxow2qmr" path="res://scenes/pong_ball.tscn" id="3_2hpth"]
 [ext_resource type="PackedScene" uid="uid://cswobtkjbc4nx" path="res://scenes/follower_enemy.tscn" id="4_626lb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smed6"]
+size = Vector2(16, 558)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73rrh"]
+size = Vector2(48, 640)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_800ja")
+metadata/_edit_horizontal_guides_ = [8.0]
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -15,10 +22,12 @@ script = ExtResource("1_800ja")
 wait_time = 2.0
 one_shot = true
 
+[node name="FollowerEnemyTimer" type="Timer" parent="."]
+
 [node name="Floor" type="Polygon2D" parent="."]
 scale = Vector2(0.986395, 1)
 color = Color(0.0588235, 0.164706, 0.247059, 1)
-polygon = PackedVector2Array(0, 0, 0, 640, 1167.89, 648, 1168, 0)
+polygon = PackedVector2Array(0, 0, 0, 648, 1167.89, 648, 1168, 0)
 
 [node name="TopBar" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -36,18 +45,51 @@ collision_layer = 16
 collision_mask = 47
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomBar"]
-position = Vector2(583.5, 630.5)
-polygon = PackedVector2Array(-583.5, 17.5, -559.5, -22.5, 536.5, -22.5, 568.5, 17.5)
+position = Vector2(584, 624)
+polygon = PackedVector2Array(-584, 24, -560, -24, 536, -24, 568, 24)
 
 [node name="Polygon2D" type="Polygon2D" parent="BottomBar"]
-position = Vector2(1152, 649)
+position = Vector2(1152, 640)
 rotation = -3.14159
 color = Color(0.0313726, 0.0784314, 0.117647, 1)
-polygon = PackedVector2Array(0, 1, 1152, 0.999878, 1128, 40.9999, 32, 41)
+polygon = PackedVector2Array(0, -8, 1152, -8.00293, 1128, 39.9971, 32.0001, 39.9999)
 
-[node name="Polygon2D3" type="Polygon2D" parent="."]
+[node name="DivisionBar" type="Polygon2D" parent="."]
+position = Vector2(0, 9.69014)
+scale = Vector2(1, 0.957746)
 color = Color(0.109804, 0.262745, 0.380392, 1)
 polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
+
+[node name="PlayerBarrierOtherSide" type="StaticBody2D" parent="."]
+position = Vector2(1016, -8)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBarrierOtherSide"]
+position = Vector2(104, 326)
+shape = SubResource("RectangleShape2D_smed6")
+
+[node name="PlayerBarrier" type="StaticBody2D" parent="."]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBarrier"]
+position = Vector2(32, 321)
+shape = SubResource("RectangleShape2D_smed6")
+
+[node name="PlayerPointArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPointArea"]
+position = Vector2(-24, 320)
+shape = SubResource("RectangleShape2D_73rrh")
+
+[node name="EnemyPointArea" type="Area2D" parent="."]
+position = Vector2(1184, 0)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPointArea"]
+position = Vector2(-8, 320)
+shape = SubResource("RectangleShape2D_73rrh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -65,12 +107,12 @@ offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 128
-text = "100"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
-position = Vector2(1072, 256)
+position = Vector2(1088, 256)
 
 [node name="Player" parent="." instance=ExtResource("1_ym5oo")]
 position = Vector2(64, 256)
@@ -81,5 +123,22 @@ position = Vector2(544, 288)
 [node name="FollowerEnemy" parent="." instance=ExtResource("4_626lb")]
 position = Vector2(368, 336)
 
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(1136, 48)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(1136, 200)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(1136, 384)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(1136, 592)
+
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="FollowerEnemyTimer" to="." method="_on_follower_enemy_timer_timeout"]
+[connection signal="body_entered" from="PlayerPointArea" to="." method="_on_player_point_area_body_entered"]
+[connection signal="body_entered" from="EnemyPointArea" to="." method="_on_enemy_point_area_body_entered"]

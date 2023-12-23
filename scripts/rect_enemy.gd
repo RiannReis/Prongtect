@@ -11,7 +11,7 @@ func _physics_process(_delta):
 
 
 func get_opponent_direction() -> int:
-	if abs(ball.position.y - position.y) > 12:
+	if abs(ball.position.y - position.y) > 20:
 		if ball.position.y > position.y:
 			return 1
 		return -1

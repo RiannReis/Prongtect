@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://globals/signal_bus.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -59,6 +63,7 @@ space_bar={
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="walls"
 2d_physics/layer_6="rect_enemy"
+2d_physics/layer_7="p"
 2d_physics/stretch/aspect="keep"
 2d_physics/size/borderless=false
 2d_physics/stretch/mode="canvas_items"

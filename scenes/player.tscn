@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://hh6bgb4gl7k3"]
+[gd_scene load_steps=4 format=3 uid="uid://hh6bgb4gl7k3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hluev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0detx"]
 size = Vector2(16, 64)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8toit"]
+radius = 32.0
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 62
+collision_mask = 126
 script = ExtResource("1_hluev")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -16,3 +19,12 @@ polygon = PackedVector2Array(0, 0, 1.06667, 1.19209e-07, 1.06667, 4.26667, 0, 4.
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0detx")
+
+[node name="AttackArea2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+shape = SubResource("CircleShape2D_8toit")
+disabled = true
+
+[connection signal="body_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_body_entered"]
