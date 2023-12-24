@@ -115,7 +115,7 @@ vertical_alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
 offset_left = 56.0
 offset_top = 616.0
-offset_right = 136.0
+offset_right = 144.0
 offset_bottom = 624.0
 
 [node name="Control" parent="CanvasLayer/PanelContainer" instance=ExtResource("2_lxikd")]

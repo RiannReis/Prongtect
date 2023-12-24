@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @export var speed: int = 450
-var health: int = 100
 
 
 func _physics_process(delta):
@@ -19,7 +18,7 @@ func _physics_process(delta):
 
 
 func hit():
-	health -= 20
+	Globals.health -= 10
 
 
 func _on_attack_area_2d_body_entered(body):

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name FollowerEnemy
 
+
 @export var speed: int = 200
 var health: int = 10
 
@@ -18,6 +19,7 @@ func _process(_delta):
 
 func hit():
 	health -= 10
+	$CPUParticles2D.emitting = true
 	await get_tree().create_timer(0.5).timeout
 	SignalBus.enemy_hit.emit()
 	queue_free()

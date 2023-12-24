@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cswobtkjbc4nx"]
+[gd_scene load_steps=3 format=3 uid="uid://cswobtkjbc4nx"]
 
 [ext_resource type="Script" path="res://scripts/follower_enemy.gd" id="1_8wjq4"]
+
+[sub_resource type="Curve" id="Curve_8yyp5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="FollowerEnemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -13,3 +17,20 @@ polygon = PackedVector2Array(-8, 0, 16, 0, 24, 8, 16, 16, -8, 16, -16, 8)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, 0, 16, 0, 24, 8, 16, 16, -8, 16, -16, 8)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.41
+randomness = 0.22
+emission_shape = 1
+emission_sphere_radius = 6.52
+gravity = Vector2(0, 0)
+initial_velocity_max = 121.21
+angular_velocity_min = -160.0
+angular_velocity_max = 174.55
+scale_amount_min = 10.0
+scale_amount_max = 50.0
+scale_amount_curve = SubResource("Curve_8yyp5")
+color = Color(0.964706, 0.839216, 0.741176, 1)

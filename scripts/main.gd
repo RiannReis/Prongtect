@@ -1,11 +1,14 @@
 extends Node2D
 
 var score: int
+@onready var health = $CanvasLayer/PanelContainer/Control/ProgressBar
+
 var enemies: PackedScene = preload("res://scenes/follower_enemy.tscn")
 
 func _ready():
 	new_game()
 	SignalBus.connect("enemy_hit", _on_hit_player_complete)
+	SignalBus.connect("update_health_changed", update_health)
 
 
 func new_game():
@@ -20,6 +23,10 @@ func game_over():
 
 func update_score(_score: int) -> void:
 	$CanvasLayer/ScoreLabel.text = str(score)
+
+
+func update_health(new_value: int) -> void:
+	health.value = new_value
 
 
 func reset_ball():
@@ -41,6 +48,7 @@ func _on_player_point_area_body_entered(body):
 		score -= 10
 		update_score(score)
 		reset_ball()
+		Globals.health -= 10
 
 
 func _on_enemy_point_area_body_entered(body):
