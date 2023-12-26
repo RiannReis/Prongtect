@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmqv3b7hvek0w"]
+[gd_scene load_steps=4 format=3 uid="uid://cmqv3b7hvek0w"]
 
 [ext_resource type="Script" path="res://scripts/rect_enemy.gd" id="1_1i7q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70ifj"]
 size = Vector2(16, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k2pkg"]
+polygon = PackedVector2Array(-8, -32, 8, -32, 8, 32, -8, 32)
 
 [node name="RectEnemy" type="CharacterBody2D"]
 collision_layer = 32
@@ -17,3 +20,6 @@ polygon = PackedVector2Array(0, 0, 1.06667, 1.19209e-07, 1.06667, 4.26667, 0, 4.
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_70ifj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_k2pkg")

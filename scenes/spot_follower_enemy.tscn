@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmyt5585uoq0j"]
+
+[ext_resource type="Script" path="res://scripts/spot.gd" id="1_5llsl"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+z_index = -1
+emitting = false
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+angle_max = 45.0
+scale_amount_min = 10.0
+scale_amount_max = 50.0
+color = Color(0.584314, 0.458824, 0.466667, 1)
+script = ExtResource("1_5llsl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

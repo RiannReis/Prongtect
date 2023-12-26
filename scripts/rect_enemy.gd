@@ -10,14 +10,13 @@ var rng = RandomNumberGenerator.new()
 func _physics_process(_delta):
 	velocity = Vector2(0, get_opponent_direction() * speed)
 	move_and_slide()
-	print(rng.randi_range(30, 40))
 	
 	if position.x > 1100:
 		replace_pos()
 
 
 func get_opponent_direction() -> int:
-	if abs(ball.position.y - position.y) > rng.randi_range(30, 40):
+	if abs(ball.position.y - position.y) > rng.randi_range(25, 40):
 		if ball.position.y > position.y:
 			return 1
 		return -1

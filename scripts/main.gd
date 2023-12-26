@@ -1,6 +1,8 @@
 extends Node2D
 
 var score: int
+
+@onready var score_label = $CanvasLayer/CenterContainer/ScoreLabel
 @onready var health = $CanvasLayer/PanelContainer/Control/ProgressBar
 
 var enemies: PackedScene = preload("res://scenes/follower_enemy.tscn")
@@ -22,7 +24,10 @@ func game_over():
 
 
 func update_score(_score: int) -> void:
-	$CanvasLayer/CenterContainer/ScoreLabel.text = str(score)
+	score_label.text = str(score)
+	var tween = get_tree().create_tween()
+	tween.tween_property(score_label, "theme_override_font_sizes/font_size", 256, 0.2)
+	tween.tween_property(score_label, "theme_override_font_sizes/font_size", 128, 0.2)
 
 
 func update_health(new_value: int) -> void:
