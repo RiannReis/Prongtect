@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vty4kcnla27b"]
+[gd_scene load_steps=11 format=3 uid="uid://vty4kcnla27b"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_800ja"]
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
@@ -6,6 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://xvscy5nrtwwh" path="res://scenes/health_bar.tscn" id="2_lxikd"]
 [ext_resource type="PackedScene" uid="uid://c2uvirxow2qmr" path="res://scenes/pong_ball.tscn" id="3_2hpth"]
 [ext_resource type="PackedScene" uid="uid://cswobtkjbc4nx" path="res://scenes/follower_enemy.tscn" id="4_626lb"]
+[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="7_kfhns"]
+
+[sub_resource type="Environment" id="Environment_ogofk"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 1.25
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_brightness = 1.2
+adjustment_saturation = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smed6"]
 size = Vector2(16, 558)
@@ -16,6 +28,13 @@ size = Vector2(48, 640)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_800ja")
 metadata/_edit_horizontal_guides_ = [8.0]
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.0313726, 0.0784314, 0.117647, 1)
+polygon = PackedVector2Array(-118, -52, -119, 696, 1287, 696, 1287, -52)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ogofk")
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -64,6 +83,7 @@ polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
 [node name="PlayerBarrierOtherSide" type="StaticBody2D" parent="."]
 position = Vector2(1016, -8)
 collision_layer = 64
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBarrierOtherSide"]
 position = Vector2(104, 326)
@@ -87,51 +107,11 @@ shape = SubResource("RectangleShape2D_73rrh")
 [node name="EnemyPointArea" type="Area2D" parent="."]
 position = Vector2(1184, 0)
 collision_layer = 64
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPointArea"]
 position = Vector2(-8, 320)
 shape = SubResource("RectangleShape2D_73rrh")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0.0980392)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -109.5
-offset_top = -89.0
-offset_right = 109.5
-offset_bottom = 89.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 128
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 56.0
-offset_top = 616.0
-offset_right = 136.0
-offset_bottom = 624.0
-
-[node name="Control" parent="CanvasLayer/PanelContainer" instance=ExtResource("2_lxikd")]
-layout_mode = 2
-
-[node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
-position = Vector2(1088, 256)
-
-[node name="Player" parent="." instance=ExtResource("1_ym5oo")]
-position = Vector2(64, 256)
-
-[node name="PongBall" parent="." instance=ExtResource("3_2hpth")]
-position = Vector2(544, 288)
-
-[node name="FollowerEnemy" parent="." instance=ExtResource("4_626lb")]
-position = Vector2(368, 336)
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 
@@ -147,8 +127,54 @@ position = Vector2(1136, 384)
 [node name="Marker2D4" type="Marker2D" parent="EnemySpawns"]
 position = Vector2(1136, 592)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/CenterContainer"]
+modulate = Color(1, 1, 1, 0.0980392)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 616.0
+offset_right = 56.0
+offset_bottom = 616.0
+
+[node name="Control" parent="CanvasLayer/PanelContainer" instance=ExtResource("2_lxikd")]
+layout_mode = 2
+
+[node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
+position = Vector2(1088, 256)
+
+[node name="PongBall" parent="." instance=ExtResource("3_2hpth")]
+position = Vector2(544, 288)
+
+[node name="FollowerEnemy" parent="." instance=ExtResource("4_626lb")]
+position = Vector2(368, 336)
+
+[node name="Player" parent="." instance=ExtResource("1_ym5oo")]
+position = Vector2(64, 256)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("7_kfhns")
+
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+one_shot = true
+
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="FollowerEnemyTimer" to="." method="_on_follower_enemy_timer_timeout"]
 [connection signal="body_entered" from="PlayerPointArea" to="." method="_on_player_point_area_body_entered"]
 [connection signal="body_entered" from="EnemyPointArea" to="." method="_on_enemy_point_area_body_entered"]
+[connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]

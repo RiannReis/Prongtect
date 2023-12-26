@@ -19,6 +19,7 @@ func _process(_delta):
 
 func hit():
 	health -= 10
+	SignalBus.shake_soft.emit()
 	$CPUParticles2D.emitting = true
 	await get_tree().create_timer(0.5).timeout
 	SignalBus.enemy_hit.emit()

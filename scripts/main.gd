@@ -22,7 +22,7 @@ func game_over():
 
 
 func update_score(_score: int) -> void:
-	$CanvasLayer/ScoreLabel.text = str(score)
+	$CanvasLayer/CenterContainer/ScoreLabel.text = str(score)
 
 
 func update_health(new_value: int) -> void:
@@ -49,6 +49,7 @@ func _on_player_point_area_body_entered(body):
 		update_score(score)
 		reset_ball()
 		Globals.health -= 10
+		SignalBus.shake_medium.emit()
 
 
 func _on_enemy_point_area_body_entered(body):
@@ -56,6 +57,7 @@ func _on_enemy_point_area_body_entered(body):
 		score += 10
 		update_score(score)
 		reset_ball()
+		SignalBus.shake_medium.emit()
 
 
 func _on_hit_player_complete():
