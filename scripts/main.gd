@@ -7,6 +7,7 @@ var score: int
 
 var enemies: PackedScene = preload("res://scenes/follower_enemy.tscn")
 
+
 func _ready():
 	new_game()
 	SignalBus.connect("enemy_hit", _on_hit_player_complete)
@@ -25,6 +26,7 @@ func game_over():
 
 func update_score(_score: int) -> void:
 	score_label.text = str(score)
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(score_label, "theme_override_font_sizes/font_size", 256, 0.2)
 	tween.tween_property(score_label, "theme_override_font_sizes/font_size", 128, 0.2)

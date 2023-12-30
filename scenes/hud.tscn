@@ -1,65 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk03exlrs63gx"]
+[gd_scene load_steps=8 format=3 uid="uid://dk03exlrs63gx"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_78aq3"]
+[ext_resource type="Texture2D" uid="uid://cn15amo8ws3bd" path="res://graphics/ui/prongtect-bg.png" id="2_1pel4"]
+[ext_resource type="Texture2D" uid="uid://rwieqymuv72l" path="res://graphics/ui/prongtect-title.png" id="3_2d517"]
+[ext_resource type="Texture2D" uid="uid://dqkh801n60ngb" path="res://graphics/ui/prongtect-player.png" id="4_wtgl4"]
+[ext_resource type="Texture2D" uid="uid://c5ni0m076c0m4" path="res://graphics/ui/prongtect-enemies.png" id="5_smx5d"]
+[ext_resource type="Texture2D" uid="uid://76ak1bdoyxoy" path="res://graphics/ui/prongtect-ball.png" id="6_nw0w4"]
+[ext_resource type="Texture2D" uid="uid://dxlyt5bhjayrv" path="res://graphics/ui/prongtect-effect.png" id="7_fnof8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_78aq3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.196078)
+texture = ExtResource("2_1pel4")
+
+[node name="Title" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_2d517")
+
+[node name="TextureRextPlayer" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_wtgl4")
+
+[node name="TextureRectEnemies" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_smx5d")
+
+[node name="TextureRectBall" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_nw0w4")
+
+[node name="TextureRectEffect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("7_fnof8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 397.5
-offset_right = 437.5
-offset_bottom = 40.0
-theme_override_constants/margin_top = 20
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -227.0
+offset_right = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 128
 
-[node name="Message" type="Label" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
-text = "How long can you survive?
-Let's start!!"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -33.0
-offset_right = 46.5
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 10
 
-[node name="ButtonNewGame" type="Button" parent="VBoxContainer"]
+[node name="ButtonNewGame" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "New Game"
+flat = true
 
-[node name="Control" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ButtonExitGame" type="Button" parent="VBoxContainer"]
+[node name="ButtonControls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Exit Game"
+text = "Controls
+"
+flat = true
+
+[node name="ButtonQuit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+flat = true
 
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="pressed" from="VBoxContainer/ButtonNewGame" to="." method="_on_button_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonExitGame" to="." method="_on_button_exit_game_pressed"]
+[node name="MyLinkButton" type="LinkButton" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "By RiannReis"
+underline = 2
+uri = "https://github.com/RiannReis"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonNewGame" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_exit_game_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
