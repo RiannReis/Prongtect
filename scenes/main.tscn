@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_800ja"]
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
 [ext_resource type="PackedScene" uid="uid://cmqv3b7hvek0w" path="res://scenes/rect_enemy.tscn" id="2_if3wd"]
-[ext_resource type="PackedScene" uid="uid://xvscy5nrtwwh" path="res://scenes/health_bar.tscn" id="2_lxikd"]
+[ext_resource type="PackedScene" uid="uid://d2vtddc5pk88r" path="res://scenes/ui_main.tscn" id="2_p53kh"]
 [ext_resource type="PackedScene" uid="uid://c2uvirxow2qmr" path="res://scenes/pong_ball.tscn" id="3_2hpth"]
 [ext_resource type="PackedScene" uid="uid://cswobtkjbc4nx" path="res://scenes/follower_enemy.tscn" id="4_626lb"]
 [ext_resource type="Script" path="res://scripts/shake_camera.gd" id="7_kfhns"]
@@ -97,6 +97,8 @@ scale = Vector2(1, 0.957746)
 color = Color(0.109804, 0.262745, 0.380392, 1)
 polygon = PackedVector2Array(544, 40, 544, 608, 552, 608, 552, 40)
 
+[node name="UIMain" parent="." instance=ExtResource("2_p53kh")]
+
 [node name="PlayerBarrierOtherSide" type="StaticBody2D" parent="."]
 position = Vector2(1016, -8)
 collision_layer = 64
@@ -143,32 +145,6 @@ position = Vector2(1136, 384)
 
 [node name="Marker2D4" type="Marker2D" parent="EnemySpawns"]
 position = Vector2(1136, 592)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/CenterContainer"]
-modulate = Color(1, 1, 1, 0.0980392)
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 56.0
-offset_top = 616.0
-offset_right = 56.0
-offset_bottom = 616.0
-
-[node name="Control" parent="CanvasLayer/PanelContainer" instance=ExtResource("2_lxikd")]
-layout_mode = 2
 
 [node name="RectEnemy" parent="." instance=ExtResource("2_if3wd")]
 position = Vector2(1088, 256)

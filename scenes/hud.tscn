@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk03exlrs63gx"]
+[gd_scene load_steps=11 format=3 uid="uid://dk03exlrs63gx"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_78aq3"]
 [ext_resource type="Texture2D" uid="uid://cn15amo8ws3bd" path="res://graphics/ui/prongtect-bg.png" id="2_1pel4"]
@@ -7,6 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://c5ni0m076c0m4" path="res://graphics/ui/prongtect-enemies.png" id="5_smx5d"]
 [ext_resource type="Texture2D" uid="uid://76ak1bdoyxoy" path="res://graphics/ui/prongtect-ball.png" id="6_nw0w4"]
 [ext_resource type="Texture2D" uid="uid://dxlyt5bhjayrv" path="res://graphics/ui/prongtect-effect.png" id="7_fnof8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obdsk"]
+bg_color = Color(0.0313726, 0.0784314, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p68a"]
+bg_color = Color(0.0313726, 0.0784314, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dalg"]
+bg_color = Color(0.0313726, 0.0784314, 0.117647, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_78aq3")
@@ -65,26 +74,22 @@ size_flags_vertical = 4
 [node name="ButtonNewGame" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_obdsk")
 text = "New Game"
-flat = true
 
 [node name="ButtonControls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p68a")
 text = "Controls
 "
-flat = true
 
 [node name="ButtonQuit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_8dalg")
 text = "Quit
 "
-flat = true
-
-[node name="MessageTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="MyLinkButton" type="LinkButton" parent="."]
 modulate = Color(1, 1, 1, 0.376471)
@@ -103,5 +108,5 @@ underline = 2
 uri = "https://github.com/RiannReis"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonNewGame" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonControls" to="." method="_on_button_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_exit_game_pressed"]
-[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

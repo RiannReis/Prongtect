@@ -6,3 +6,5 @@ var health: int = 100:
 			return
 		health = value
 		SignalBus.update_health_changed.emit(health)
+
+var score: int

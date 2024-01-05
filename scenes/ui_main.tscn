@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2vtddc5pk88r"]
+
+[ext_resource type="Script" path="res://scripts/ui_main.gd" id="1_24pjq"]
+[ext_resource type="PackedScene" uid="uid://xvscy5nrtwwh" path="res://scenes/health_bar.tscn" id="2_lc3u1"]
+
+[node name="UIMain" type="CanvasLayer"]
+script = ExtResource("1_24pjq")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer"]
+modulate = Color(1, 1, 1, 0.0980392)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 56.0
+offset_top = 616.0
+offset_right = 56.0
+offset_bottom = 616.0
+
+[node name="Control" parent="PanelContainer" instance=ExtResource("2_lc3u1")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_right = 102.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 64
+
+[node name="Message" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "How long can you survive?"
+
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
