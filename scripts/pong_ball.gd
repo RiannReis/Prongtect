@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name Ball
+class_name Ball extends CharacterBody2D
 
 @export var speed: int = 300
 

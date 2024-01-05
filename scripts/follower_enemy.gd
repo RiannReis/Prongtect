@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name FollowerEnemy
+class_name FollowerEnemy extends CharacterBody2D
 
 @export var spot: PackedScene = null
 

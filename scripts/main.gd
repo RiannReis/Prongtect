@@ -5,6 +5,8 @@ extends Node2D
 
 var enemies: PackedScene = preload("res://scenes/follower_enemy.tscn")
 
+@onready var start_time = Time.get_unix_time_from_system()
+
 
 func _ready():
 	new_game()
@@ -14,6 +16,7 @@ func _ready():
 
 
 func new_game():
+	Globals.health = 100
 	Globals.score = 0
 	$StartTimer.start()
 	$UIMain.show_message("Let's start...")
@@ -22,6 +25,11 @@ func new_game():
 func game_over():
 	$ScoreTimer.stop()
 	$FollowerEnemyTimer.stop()
+	
+	var time_now = Time.get_unix_time_from_system()
+	
+	Globals.global_time = int( time_now - start_time )
+	
 	$UIMain.show_game_over()
 
 
@@ -58,6 +66,8 @@ func _on_player_point_area_body_entered(body):
 		reset_ball()
 		Globals.health -= 10
 		SignalBus.shake_medium.emit()
+	
+	if Globals.health <= 0:
 		game_over()
 
 

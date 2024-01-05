@@ -8,3 +8,5 @@ var health: int = 100:
 		SignalBus.update_health_changed.emit(health)
 
 var score: int
+
+var global_time

@@ -48,7 +48,6 @@ polygon = PackedVector2Array(-118, -52, -119, 696, 1287, 696, 1287, -52)
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="FollowerEnemyTimer" type="Timer" parent="."]

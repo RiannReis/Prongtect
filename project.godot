@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://globals/signal_bus.gd"
 Globals="*res://globals/globals.gd"
+HighScore="*res://globals/high_score.gd"
 
 [display]
 
