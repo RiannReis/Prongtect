@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://vty4kcnla27b"]
+[gd_scene load_steps=15 format=3 uid="uid://vty4kcnla27b"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_800ja"]
 [ext_resource type="PackedScene" uid="uid://hh6bgb4gl7k3" path="res://scenes/player.tscn" id="1_ym5oo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cswobtkjbc4nx" path="res://scenes/follower_enemy.tscn" id="4_626lb"]
 [ext_resource type="Script" path="res://scripts/shake_camera.gd" id="7_kfhns"]
 [ext_resource type="Texture2D" uid="uid://dqticlw1rgvm2" path="res://graphics/lights/circle.png" id="8_3ui2e"]
+[ext_resource type="PackedScene" uid="uid://cff3whyl2tae0" path="res://scenes/pause_ui.tscn" id="9_f505p"]
 
 [sub_resource type="Environment" id="Environment_ogofk"]
 background_mode = 3
@@ -172,6 +173,8 @@ shadow_filter = 1
 shadow_filter_smooth = 0.5
 texture = ExtResource("8_3ui2e")
 texture_scale = 4.33
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_f505p")]
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
