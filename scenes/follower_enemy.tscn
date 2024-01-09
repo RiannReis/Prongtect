@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cswobtkjbc4nx"]
+[gd_scene load_steps=7 format=3 uid="uid://cswobtkjbc4nx"]
 
 [ext_resource type="Script" path="res://scripts/follower_enemy.gd" id="1_8wjq4"]
 [ext_resource type="PackedScene" uid="uid://dmyt5585uoq0j" path="res://scenes/spot_follower_enemy.tscn" id="2_x00a4"]
+[ext_resource type="AudioStream" uid="uid://b0yjgqx0mm50q" path="res://audio/sound.wav" id="3_x8vor"]
 
 [sub_resource type="Curve" id="Curve_8yyp5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.225275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -46,3 +47,7 @@ color_ramp = SubResource("Gradient_x58ks")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_0f5mn")
+
+[node name="FollowerEnemyAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x8vor")
+volume_db = -10.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2uvirxow2qmr"]
+[gd_scene load_steps=4 format=3 uid="uid://c2uvirxow2qmr"]
 
 [ext_resource type="Script" path="res://scripts/pong_ball.gd" id="1_h8mni"]
+[ext_resource type="AudioStream" uid="uid://cde1nbecixc2r" path="res://audio/4359__noisecollector__pongblipf4.wav" id="2_qsdeb"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bhs6s"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -21,3 +22,8 @@ polygon = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_bhs6s")
+
+[node name="BallAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qsdeb")
+volume_db = -10.0
+autoplay = true

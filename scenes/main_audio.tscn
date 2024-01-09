@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf3ttic3jfq7w"]
+
+[ext_resource type="AudioStream" uid="uid://b3t5edjw8fgnu" path="res://audio/338361__tyops__arcade-intro-2.wav" id="1_lpx35"]
+
+[node name="MainAudio" type="AudioStreamPlayer"]
+stream = ExtResource("1_lpx35")
+volume_db = -10.0
+autoplay = true

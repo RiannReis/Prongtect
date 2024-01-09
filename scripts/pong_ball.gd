@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @export var speed: int = 300
 
+@onready var ball_audio = $BallAudio
+
 
 func _ready():
 	start_ball()
@@ -13,6 +15,9 @@ func _physics_process(delta):
 	
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
+		
+		ball_audio.play()
+		
 
 
 func start_ball():

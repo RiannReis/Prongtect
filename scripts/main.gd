@@ -6,6 +6,7 @@ extends Node2D
 var enemies: PackedScene = preload("res://scenes/follower_enemy.tscn")
 
 @onready var start_time = Time.get_unix_time_from_system()
+@onready var ball_in_area_audio = $BallInAreaAudio
 
 
 func _ready():
@@ -16,6 +17,7 @@ func _ready():
 
 
 func new_game():
+	MainAudio.play()
 	Globals.health = 100
 	Globals.score = 0
 	$StartTimer.start()
@@ -61,6 +63,7 @@ func _on_start_timer_timeout():
 
 func _on_player_point_area_body_entered(body):
 	if body == $PongBall:
+		ball_in_area_audio.play()
 		Globals.score -= 10
 		update_score(Globals.score)
 		reset_ball()
@@ -69,10 +72,12 @@ func _on_player_point_area_body_entered(body):
 	
 	if Globals.health <= 0:
 		game_over()
+		MainAudio.stop()
 
 
 func _on_enemy_point_area_body_entered(body):
 	if body == $PongBall:
+		ball_in_area_audio.play()
 		Globals.score += 10
 		update_score(Globals.score)
 		reset_ball()

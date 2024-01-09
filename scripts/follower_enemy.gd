@@ -7,6 +7,7 @@ extends CharacterBody2D
 var health: int = 10
 
 @onready var player = $"../Player"
+@onready var follower_enemy_audio = $FollowerEnemyAudio
 
 
 func _process(_delta):
@@ -18,6 +19,7 @@ func _process(_delta):
 
 
 func hit():
+	follower_enemy_audio.play()
 	health -= 10
 	SignalBus.shake_soft.emit()
 	$CPUParticles2D.emitting = true
