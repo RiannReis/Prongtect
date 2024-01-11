@@ -1,6 +1,12 @@
 # Prongtect
 Inspired by the game Pong, my first game made with the Godot Engine!
 
+## About:
+This is a project created with the aim of starting my studies in the area of game development, focusing on the Godot Engine. This is a simple game, with the objective of getting as many points as possible before being eliminated.
+
+You can play it [here](https://anhanme.itch.io/prongtect).
+
+
 ## Screenshots:
 <img src="https://github.com/RiannReis/Prongtect/assets/106779395/e49f9bdd-4d1b-409b-86e9-8fb44da4fff4" alt="home screen" width="500" height="260">
 
@@ -10,5 +16,10 @@ Inspired by the game Pong, my first game made with the Godot Engine!
 
 <img src="https://github.com/RiannReis/Prongtect/assets/106779395/0a99c126-0c75-41bb-a0de-5bcccf6e938b" alt="game over screen" width="500" height="260">
 
-## About:
-This is a project created with the aim of starting my studies in the area of game development, focusing on the Godot Engine. This is a simple game, with the objective of getting as many points as possible before being eliminated.
+## Demo:
+
+<div align="center">
+
+![prongtect](https://github.com/RiannReis/Prongtect/assets/106779395/cb2e1827-1658-4e25-b898-a8518ee8750c)
+
+</div>
